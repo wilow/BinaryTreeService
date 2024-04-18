@@ -1,0 +1,35 @@
+@host = http://localhost:5254
+
+### Mirror Binary Tree
+POST {{host}}/mirror-binarytree
+Content-type: application/json
+
+{
+  "name": "A",
+  "left": {
+    "name": "B",
+    "left": {
+      "name": "D",
+      "left": null,
+      "right": null
+    },
+    "right": {
+      "name": "E",
+      "left": null,
+      "right": null
+    }
+  },
+  "right": {
+    "name": "C",
+    "left": {
+      "name": "F",
+      "left": null,
+      "right": null
+    },
+    "right": {
+      "name": "G",
+      "left": null,
+      "right": null
+    }
+  }
+}
