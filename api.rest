@@ -33,3 +33,12 @@ Content-type: application/json
     }
   }
 }
+
+
+
+### Empty Binary Tree
+POST {{host}}/mirror-binarytree
+Content-type: application/json
+
+{
+}
