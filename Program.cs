@@ -10,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 builder.Services.AddScoped<IBinaryTreeProcessor, BinaryTreeProcessor>();
 
 builder.Logging.AddOpenTelemetry(options =>
@@ -30,6 +33,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseExceptionHandler();
 
 app.MapPost("/mirror-binarytree", ([FromBody] BinaryTree binaryTree, IBinaryTreeProcessor processor, ILogger<Program> logger) =>
 {
@@ -54,4 +59,8 @@ app.MapPost("/mirror-binarytree", ([FromBody] BinaryTree binaryTree, IBinaryTree
 .WithName("MirrorBinaryTree")
 .WithOpenApi();
 
+app.UseExceptionHandler(exceptionHandlerApp => exceptionHandlerApp.Run(async context => await Results.Problem().ExecuteAsync(context)));
+app.UseStatusCodePages(async statusCodeContext
+    => await Results.Problem(statusCode: statusCodeContext.HttpContext.Response.StatusCode)
+                 .ExecuteAsync(statusCodeContext.HttpContext));
 app.Run();

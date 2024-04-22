@@ -11,7 +11,7 @@ public class BinaryTreeProcessor : IBinaryTreeProcessor
 
     public BinaryTree? Mirror(BinaryTree? tree)
     {
-        if (tree == null)
+        if (tree == null || !tree.IsValid())
         {
             return null;
         }

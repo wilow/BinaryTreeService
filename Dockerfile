@@ -3,9 +3,9 @@ WORKDIR /
 COPY BinaryTreeService.csproj .
 RUN dotnet restore
 COPY . .
-RUN dotnet publish -c Release -o /dist
+RUN dotnet publish -c Release -o dist BinaryTreeService.csproj
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
-WORKDIR /dist
-COPY --from=build /dist .
+WORKDIR dist
+COPY --from=build dist .
 ENTRYPOINT ["dotnet", "BinaryTreeService.dll"]

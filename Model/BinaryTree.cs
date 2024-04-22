@@ -5,7 +5,7 @@ namespace BinaryTreeService.Model;
 public class BinaryTree
 {
     [Required]
-    public string Name { get; set; }
+    public string? Name { get; set; }
     public BinaryTree? Left { get; set; }
     public BinaryTree? Right { get; set; }
 

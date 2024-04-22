@@ -42,3 +42,32 @@ Content-type: application/json
 
 {
 }
+
+
+### With Error Binary Tree
+POST {{host}}/mirror-binarytree
+Content-type: application/json
+
+{
+  "name": "A",
+  "left": {
+    "name": "B",
+    "left": {
+      "name": "D",
+      "left": null,
+      "right": null
+    },
+    "right": {
+      "name": "E",
+      "left": null,
+      "right": null
+    }
+  },
+  "right": {
+    "right": {
+      "name": null,
+      "left": null,
+      "right": null
+    }
+  }
+}
