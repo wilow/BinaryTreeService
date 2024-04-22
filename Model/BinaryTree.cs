@@ -11,7 +11,7 @@ public class BinaryTree
 
     public bool IsValid()
     {
-        if (Name == null)
+        if (Name == null || (Left != null && !Left.IsValid()) || (Right != null && !Right.IsValid()))
         {
             return false;
         }
